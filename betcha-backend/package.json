@@ -1,0 +1,24 @@
+{
+  "name": "betcha-backend",
+  "version": "0.1.0",
+  "description": "Backend for the Betcha! app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v12-bears-team-04.git"
+  },
+  "keywords": [
+    "betcha",
+    "chingu",
+    "backend"
+  ],
+  "author": "Chingu V12 Bears 04 Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v12-bears-team-04/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v12-bears-team-04#readme"
+}
