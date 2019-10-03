@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"**/betcha-frontend/**/*.js": "javascriptreact"
+	},
+	"prettier.jsxSingleQuote": false,
+	"prettier.singleQuote": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.tslint": false,
+		"source.organizeImports": false
+	},
+}

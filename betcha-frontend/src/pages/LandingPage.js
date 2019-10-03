@@ -6,7 +6,7 @@ import Doodle from "../components/UIUX/Doodle.js";
 import HeaderText from "../components/UIUX/HeaderText.js";
 import GetStartedButton from "../widgets/GetStartedButton.js";
 
-const pageItem = styled.div`
+const PageItem = styled.div`
   height: 100%;
   width: 100%;
   background: white;
@@ -15,13 +15,13 @@ const pageItem = styled.div`
 class LandingPage extends Component {
   render() {
     return (
-      <pageItem>
+      <PageItem>
         <Navbar />
         <Jigsaw />
         <HeaderText />
         <GetStartedButton />
         <Doodle />
-      </pageItem>
+      </PageItem>
     );
   }
 }
