@@ -1,0 +1,86 @@
+[
+	{
+		"id": "fwhhyknjkandnajknklsnn",
+		"title": "Race to 500",
+		"subTitle": "The last person to reach the target of 500km cycled has to pay £50 to Charity",
+		"rules": [
+			"Miles may be on any human powered, 2 (or 1) wheeled vehicle",
+			"If it isn't logged on the day... It didn't happen",
+			"Stationary miles on a turbo-trainer, exercise bike or spin bike don't count toward the mileage",
+			"If you can stand, unsupported, then you can ride... No ifs, No buts..."
+		],
+		"challengeImgUrlLg": "https://cdn-cyclingtips.pressidium.com/wp-content/uploads/2018/04/CORVOS_00027926-003.jpg",
+		"challengeImgUrlSm": "https://cdn-cyclingtips.pressidium.com/wp-content/uploads/2018/04/CORVOS_00027926-003.jpg",
+		"challengeType": "charity",
+		"activityType": "physical",
+		"charityId": "kjnlknkasclknlaknsclknlnca",
+		"value": 5000,
+		"currency": "GBP",
+		"start_date": false,
+		"end_date": false,
+		"duration": false,
+		"adminId": "njbnjnljsncn34nl5kl5nlknwrbkjbasc"
+	},
+	{
+		"id": "kjkjnalnslnma;nknsdn",
+		"title": "Festive Fun",
+		"subTitle": "Walk a mile every day between Christmas and New Years Day",
+		"rules": [
+			"Time period includes the 25th of December and the 1st January, the following year",
+			"Miles my be jogged or ran",
+			"Poor weather is no excuse"
+		],
+		"challengeImgUrlLg": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiJ_oHelIDlAhUlyoUKHWB9A4kQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.thedailybeast.com%2Fstudy-exercise-could-be-the-key-to-mitigating-the-christmas-weight-damage&psig=AOvVaw3NdBIrt4_Ytwnm4zg7x2Al&ust=1570194563295410",
+		"challengeImgUrlSm": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiJ_oHelIDlAhUlyoUKHWB9A4kQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.thedailybeast.com%2Fstudy-exercise-could-be-the-key-to-mitigating-the-christmas-weight-damage&psig=AOvVaw3NdBIrt4_Ytwnm4zg7x2Al&ust=1570194563295410",
+		"challengeType": "honour",
+		"activityType": "physical",
+		"charityId": null,
+		"value": null,
+		"currency": null,
+		"start_date": "2019-12-25T00:00:00",
+		"end-date": "2020-01-01T23:59:59",
+		"duration": "P08D",
+		"private": false,
+		"adminId": "798y1h8y98y98089013"
+	},
+	{
+		"id": "kjnlnlnanlnldlnalndnlnadnnn",
+		"title": "Note-vember",
+		"subTitle": "Practice a musical instrument for at least 15mins per day, every day for the whole of November",
+		"rules": [
+			"Practice must be logged on the timer",
+			"Practice is per day so cannot be rolled over to subsequent days"
+		],
+		"challengeImgUrlLg": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
+		"challengeImgUrlSm": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
+		"challengeType": "honour",
+		"activityType": "musical",
+		"charityId": null,
+		"value": null,
+		"currency": null,
+		"start_date": "2019-11-01T00:00:00",
+		"end-date": "2019-11-30T23:59:59",
+		"duration": "P30D",
+		"private": false,
+		"adminId": "hkjhkj2j3bj13kb1kb3kb"
+	},
+	{
+		"id": "kjnlnlnanlnldlnalndnlnadnnn",
+		"title": "Bob n Daves Pie Shop Challenge",
+		"subTitle": "Who ate all the pies, neither Bob or Dave or they'll be coughing up £20 to the other",
+		"rules": [
+			"No sneaking out to the pie shop at lunch",
+			"'Pies' includes anything encased or topped with pastry - so no pasties!!"
+		],
+		"challengeImgUrlLg": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
+		"challengeImgUrlSm": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
+		"challengeType": "honour",
+		"activityType": "musical",
+		"charityId": null,
+		"start_date": "2019-11-01T00:00:00",
+		"end-date": "2019-11-30T23:59:59",
+		"duration": "P30D",
+		"private": true,
+		"adminId": "798y1h8y98y98089013"
+	}
+]
