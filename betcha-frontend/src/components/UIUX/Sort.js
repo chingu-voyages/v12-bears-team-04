@@ -2,15 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Sort = ({ handleSet, params }) => {
-	console.log(handleSet, params);
 	return (
 		<div className="sortContainer">
 			<label htmlFor="">
 				Sort By...
 				{params && (
-					<select>
+					<select onChange={e => handleSet(e.target.value)}>
 						{params.map((v, i) => (
-							<option>{v}</option>
+							<option value={v}>{v}</option>
 						))}
 					</select>
 				)}

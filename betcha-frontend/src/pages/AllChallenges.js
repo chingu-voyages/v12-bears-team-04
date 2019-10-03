@@ -12,9 +12,10 @@ const AllChallenges = props => {
 		setChallengeList(testData);
 		return () => {};
 	}, []);
+	console.log(sort);
 	return (
 		<div className="myChallengeContainer">
-			<Filter handleSet={setFilterParamList} />
+			<Filter handleSet={setFilterParamList} params={["duration", "value"]} />
 			<Sort
 				handleSet={setSort}
 				params={[
@@ -25,9 +26,11 @@ const AllChallenges = props => {
 					"startDate"
 				]}
 			/>
-			{testData.map((v, i) => {
-				return <Challenge {...v} key={v.id} />;
-			})}
+			{challengeList
+				.sort((a, b) => (a[sort] > b[sort]) - 0.5)
+				.map((v, i) => {
+					return <Challenge {...v} key={v.id} />;
+				})}
 		</div>
 	);
 };
