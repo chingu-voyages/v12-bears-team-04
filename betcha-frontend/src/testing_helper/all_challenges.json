@@ -16,8 +16,8 @@
 		"charityId": "kjnlknkasclknlaknsclknlnca",
 		"value": 5000,
 		"currency": "GBP",
-		"start_date": false,
-		"end_date": false,
+		"startDate": false,
+		"endDate": false,
 		"duration": false,
 		"adminId": "njbnjnljsncn34nl5kl5nlknwrbkjbasc"
 	},
@@ -37,14 +37,14 @@
 		"charityId": null,
 		"value": null,
 		"currency": null,
-		"start_date": "2019-12-25T00:00:00",
+		"startDate": "2019-12-25T00:00:00",
 		"end-date": "2020-01-01T23:59:59",
 		"duration": "P08D",
 		"private": false,
 		"adminId": "798y1h8y98y98089013"
 	},
 	{
-		"id": "kjnlnlnanlnldlnalndnlnadnnn",
+		"id": "hkjhkjnlnaclknlknsdlkcnln",
 		"title": "Note-vember",
 		"subTitle": "Practice a musical instrument for at least 15mins per day, every day for the whole of November",
 		"rules": [
@@ -58,7 +58,7 @@
 		"charityId": null,
 		"value": null,
 		"currency": null,
-		"start_date": "2019-11-01T00:00:00",
+		"startDate": "2019-11-01T00:00:00",
 		"end-date": "2019-11-30T23:59:59",
 		"duration": "P30D",
 		"private": false,
@@ -72,15 +72,35 @@
 			"No sneaking out to the pie shop at lunch",
 			"'Pies' includes anything encased or topped with pastry - so no pasties!!"
 		],
-		"challengeImgUrlLg": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
-		"challengeImgUrlSm": "https://previews.123rf.com/images/gstockstudio/gstockstudio1404/gstockstudio140400549/27688524-sick-and-tired-frustrated-young-man-in-shirt-and-tie-covering-ears-with-hands-and-keeping-eyes-close.jpg",
+		"challengeImgUrlLg": "https://www.thespruceeats.com/thmb/hwgLvp8c89UAxgmdgrusgION1RE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-135608108-5a75fc88875db900374ac5bd.jpg",
+		"challengeImgUrlSm": "https://www.thespruceeats.com/thmb/hwgLvp8c89UAxgmdgrusgION1RE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-135608108-5a75fc88875db900374ac5bd.jpg",
 		"challengeType": "honour",
 		"activityType": "musical",
 		"charityId": null,
-		"start_date": "2019-11-01T00:00:00",
+		"startDate": "2019-11-01T00:00:00",
 		"end-date": "2019-11-30T23:59:59",
 		"duration": "P30D",
 		"private": true,
 		"adminId": "798y1h8y98y98089013"
+	},
+	{
+		"id": "bbkjbakjbskjdbkjabbjjbsbdjba",
+		"title": "HacktoberFest",
+		"subTitle": "Support open source and earn a limited edition T-shirt!",
+		"rules": [
+			"Hacktoberfest is open to everyone in our global community!",
+			"Pull requests can be made in any GitHub-hosted repositories/projects.",
+			"Sign up anytime between October 1 and October 31."
+		],
+		"challengeImgUrlLg": "https://hacktoberfest.digitalocean.com/assets/logo-hf19-header-8245176fe235ab5d942c7580778a914110fa06a23c3d55bf40e2d061809d8785.svg",
+		"challengeImgUrlSm": "https://hacktoberfest.digitalocean.com/assets/logo-hf19-header-8245176fe235ab5d942c7580778a914110fa06a23c3d55bf40e2d061809d8785.svg",
+		"challengeType": "prizes",
+		"activityType": "coding",
+		"charityId": null,
+		"startDate": "2019-10-01T00:00:00",
+		"end-date": "2019-10-31T23:59:59",
+		"duration": "P31D",
+		"private": false,
+		"adminId": "nnkjasjnkdnjnajsdad7897adbnk"
 	}
 ]
