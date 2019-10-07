@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Challenge = props => {
-	console.log(props);
 	return (
 		<div className="individualChallengeDisplay">
 			<h1>{props.title}</h1>

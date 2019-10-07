@@ -9,7 +9,9 @@ const Sort = ({ handleSet, params }) => {
 				{params && (
 					<select onChange={e => handleSet(e.target.value)}>
 						{params.map((v, i) => (
-							<option value={v}>{v}</option>
+							<option value={v} key={v}>
+								{v}
+							</option>
 						))}
 					</select>
 				)}

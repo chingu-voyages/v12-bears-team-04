@@ -12,10 +12,13 @@ const AllChallenges = props => {
 		setChallengeList(testData);
 		return () => {};
 	}, []);
-	console.log(sort);
 	return (
 		<div className="myChallengeContainer">
-			<Filter handleSet={setFilterParamList} params={["duration", "value"]} />
+			<Filter
+				legend="Hide Coding Challenges"
+				value="coding"
+				setValue={setFilterParamList}
+			/>
 			<Sort
 				handleSet={setSort}
 				params={[
@@ -28,6 +31,7 @@ const AllChallenges = props => {
 			/>
 			{challengeList
 				.sort((a, b) => (a[sort] > b[sort]) - 0.5)
+				.filter((v, i) => !filterParamList.includes(v.challengeType))
 				.map((v, i) => {
 					return <Challenge {...v} key={v.id} />;
 				})}

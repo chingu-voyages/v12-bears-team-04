@@ -1,36 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import CheckBox from "../../widgets/CheckBox.js";
 
-const Filter = ({ handleSet, params }) => {
+const Filter = ({ legend, value, setValue }) => {
+	// takes an array of strings
+	// takes a function to set the state of the filter array
+	const [checked, setChecked] = useState(true);
+
 	return (
-		<div className="sortContainer">
-			<fieldset>
-				<label htmlFor="">
-					Filter By...
-					{params &&
-						params.map((v, i) => {
-							return (
-								<label>
-									{v}
-									<input
-										type="checkbox"
-										name={v}
-										value={true}
-										onChange={e => console.log(e.target.name, e.target.value)}
-									/>
-								</label>
-							);
-						})}
-				</label>
-			</fieldset>
+		<div className="filterContainer">
+			<label style={{ display: "flex", alignItems: "center" }}>
+				{legend || value}
+				<CheckBox
+					checked={checked}
+					setChecked={setChecked}
+					onChange={() => setValue(value)}
+				/>
+			</label>
 		</div>
 	);
 };
 
 Filter.propTypes = {
-	handleSet: PropTypes.func.isRequired,
-
-	params: PropTypes.array.isRequired
+	legend: PropTypes.string,
+	value: PropTypes.string.isRequired,
+	setValue: PropTypes.func.isRequired
 };
 
 export default Filter;
