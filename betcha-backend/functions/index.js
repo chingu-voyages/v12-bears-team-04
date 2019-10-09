@@ -1,6 +1,9 @@
 const functions = require('firebase-functions');
-const admin = require('firebase-admin')
+
 const app = require('express')();
+
+const { getAllDataSet } = require('./handlers/dataSet');
+const { signup,login } = require('./handlers/users');
 
 const serviceAccount = {
     "type": "service_account",
@@ -16,49 +19,18 @@ const serviceAccount = {
   }
 
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://betcha-challenge.firebaseio.com"
-});
 
-const config =  {
-    apiKey: "AIzaSyDrAgmUpM2HrKl_DxjyVWwsE6j-CXHbEww",
-    authDomain: "betcha-challenge.firebaseapp.com",
-    databaseURL: "https://betcha-challenge.firebaseio.com",
-    projectId: "betcha-challenge",
-    storageBucket: "betcha-challenge.appspot.com",
-    messagingSenderId: "838488018068",
-    appId: "1:838488018068:web:e73c301904c4b287da7881",
-    measurementId: "G-XB6QEF616J"
-  };
+
+
 
 const firebase = require('firebase');
 firebase.initializeApp(config);
 
-const db = admin.firestore();
 
-app.get('/dataSet', (req, res) => {
-    db
-    .collection('dataSet')
-    .orderBy('createdAt', 'desc') //get the latest register user
-    .get()
-    .then(data => {
-        let dataSet = [];
-        data.forEach((doc) => {
-            dataSet.push({
-                dataSetId: doc.id,
-                //...doc.data()
-                userName: doc.data().userName,
-                firstName: doc.data().firstName,
-                lastName: doc.data().lastName,
-                email: doc.data().email,
-                createdAt: doc.data().createdAt
-            })
-        })
-        return res.json(dataSet);
-    })
-    .catch(err => console.error(err));
-})
+//Dataset route
+app.get('/dataSet', getAllDataSet );
+//post dataset
+app.post('/dataSets',FBAuth, postOneDataSet);
 
 // eslint-disable-next-line consistent-return
 const FBAuth = (req, res, next) => {
@@ -89,33 +61,6 @@ const FBAuth = (req, res, next) => {
      })
      };
 
-// eslint-disable-next-line consistent-return
-app.post('/dataSets',FBAuth, (req, res) => {
- if (req.body.userName.trim() === '') {
-     return res.status(400).json({ userName: 'Username is invalid'});
- }
-
-const newDataSet = {
-    userName: req.user.userName,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    createdAt: new Date().toISOString()
-};
-
-db
- .collection('dataSet')
- .add(newDataSet)
- .then((doc) => {
-     res.json({ message: `document ${doc.id} created successfully` });
-     return console.log("created user successfully");
- })
- .catch((err) => {
-     res.status(500).json({ error: 'something went wrong'});
-     console.error(err);
- });
-});
-
 const isEmail = (email) => {
     // eslint-disable-next-line no-useless-escape
     const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -130,100 +75,10 @@ const isEmpty = (string) => {
 //sign up route
 //verify credentials
 // eslint-disable-next-line consistent-return
-app.post('/signup', (req, res) => {
-    const newUser = {
-        email: req.body.email,
-        password: req.body.password,
-        confirmPassword: req.body.confirmPassword,
-        userName: req.body.userName,
-    };
-
-    let errors = {};
-
-    if(isEmpty(newUser.email)) {
-        errors.email = 'Email must not be empty'
-    } else if(!isEmail(newUser.email)){
-        errors.email = 'Enter a valid email address'
-    }
-    if(isEmpty(newUser.password)) errors.password = 'Please enter your Password'
-    if(newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Password does not match, Please make sure enter exact same password again';
-    if(isEmpty(newUser.userName)) errors.userName = 'Pleasenter your username'
-
-    if(Object.keys(errors).length > 0) return res.status(400).json(errors);
-    //TODO: validate date
-    let token, userId;
-    db.doc(`/users/${newUser.userName}`)
-    .get()
-    .then((doc) => {
-        if(doc.exists){
-            return res.status(400).json({ userName: 'The userName is already taken'});
-        } else {
-            return firebase
-            .auth()
-            .createUserWithEmailAndPassword(newUser.email, newUser.password)
-        }
-    })
-    .then((data) => {
-        userId = data.user.uid;
-       return data.user.getIdToken();
-    })
-    .then((idToken) => {
-        token = idToken;
-        const userCredentials = {
-            userName: newUser.userName,
-            email: newUser.email,
-            createdAt: new Date().toISOString(),
-            userId
-        };
-        return db.doc(`/users/${newUser.userName}`).set(userCredentials);
-    })
-    .then(() => {
-        return res.status(201).json({ token });
-    })
-    .catch((err_) => {
-        console.error(err);
-        if(err.code ===  "auth/email-already-in-use") {
-            return res.status(400).json({ email:  "Email is already in use"})
-        } else {
-        return res.status(500).json({ error: err.code });
-    }
-});
-});
+app.post('/signup', signup);
 
 
 // eslint-disable-next-line consistent-return
-app.post('/login', (req, res) => {
-    const user = {
-        email: req.body.email,
-        password: req.body.password
-    };
-
-    let errors = {};
-    
-    if(isEmpty(user.email)) errors.email = 'Enter a Valid email';
-    if(isEmpty(user.password)) errors.password = 'Enter a valid password';
-
-    if(Object.keys(errors).length > 0) return res.status(400).json(errors);
-
-    firebase
-    .auth()
-    .signInWithEmailAndPassword(user.email, user.password)
-    .then((data) => {
-        return data.user.getIdToken();
-    })
-    .then((token) => {
-        return res.json({ token });
-    }) 
-    .catch((err) => {
-        console.error(err);
-        if(err.code === 'auth/wrong-password') {
-            return res
-            .status(403)
-            .json({ general: 'Incorrect password, please try again' });
-        } else return res
-        .status(500)
-        .json({ error: err.code });
-    });
-});
+app.post('/login', login);
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
