@@ -6,24 +6,24 @@ import Doodle from "../components/UIUX/Doodle.js";
 import HeaderText from "../components/UIUX/HeaderText.js";
 import GetStartedButton from "../widgets/GetStartedButton.js";
 
-const PageItem = styled.div`
-  height: 100%;
-  width: 100%;
-  background: white;
+export const PageItem = styled.div`
+	height: 100%;
+	width: 100%;
+	background: white;
 `;
 
 class LandingPage extends Component {
-  render() {
-    return (
-      <PageItem>
-        <Navbar />
-        <Jigsaw />
-        <HeaderText />
-        <GetStartedButton />
-        <Doodle />
-      </PageItem>
-    );
-  }
+	render() {
+		return (
+			<PageItem>
+				<Navbar />
+				<Jigsaw />
+				<HeaderText />
+				<GetStartedButton />
+				<Doodle />
+			</PageItem>
+		);
+	}
 }
 
 export default LandingPage;
