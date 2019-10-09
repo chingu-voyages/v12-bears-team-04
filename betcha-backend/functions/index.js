@@ -60,11 +60,43 @@ app.get('/dataSet', (req, res) => {
     .catch(err => console.error(err));
 })
 
+// eslint-disable-next-line consistent-return
+const FBAuth = (req, res, next) => {
+    let idToken;
+     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+         idToken = req.headers.authorization.split('Bearer ')[1];
+     } else {
+         console.erroe('No token found.')
+         return res.status(403).json({ error: 'Unauthorized'});
+     }
 
-app.post('/dataSets', (req, res) => {
+     admin.auth().verifyIdToken(idToken)
+     .then(decodedToken => {
+         req.user = decodedToken;
+         console.log(decodedToken);
+         return db.collection('users')
+         .where('userId', '==', req.user.uid)
+         .limit(1)
+         .get();
+     })
+     .then(data => {
+         req.user.userName = data.doc[0].data().userName;
+         return next();
+     })
+     .catch(err => {
+         console.error('Error while verifying token', err);
+         return res.status(403).json(err);
+     })
+     };
+
+// eslint-disable-next-line consistent-return
+app.post('/dataSets',FBAuth, (req, res) => {
+ if (req.body.userName.trim() === '') {
+     return res.status(400).json({ userName: 'Username is invalid'});
+ }
 
 const newDataSet = {
-    userName: req.body.userName,
+    userName: req.user.userName,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -158,6 +190,7 @@ app.post('/signup', (req, res) => {
 });
 });
 
+
 // eslint-disable-next-line consistent-return
 app.post('/login', (req, res) => {
     const user = {
@@ -166,21 +199,31 @@ app.post('/login', (req, res) => {
     };
 
     let errors = {};
+    
     if(isEmpty(user.email)) errors.email = 'Enter a Valid email';
     if(isEmpty(user.password)) errors.password = 'Enter a valid password';
 
-    if(Object.kets(errors).length > 0) return res.status(400).json(errors);
-    firebase.auth().signInWithEmailAndPassword(user.email, user.passord)
+    if(Object.keys(errors).length > 0) return res.status(400).json(errors);
+
+    firebase
+    .auth()
+    .signInWithEmailAndPassword(user.email, user.password)
     .then((data) => {
-        return data.getIdToken();
+        return data.user.getIdToken();
     })
     .then((token) => {
         return res.json({ token });
     }) 
     .catch((err) => {
         console.error(err);
-        return res.status(500).json({ error: err.code })
-    })
-})
+        if(err.code === 'auth/wrong-password') {
+            return res
+            .status(403)
+            .json({ general: 'Incorrect password, please try again' });
+        } else return res
+        .status(500)
+        .json({ error: err.code });
+    });
+});
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
