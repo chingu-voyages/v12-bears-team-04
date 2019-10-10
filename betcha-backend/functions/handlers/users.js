@@ -18,6 +18,8 @@ exports.signup = (req, res) => {
     const { valid, errors } = validateSignupData(newUser);
 
     if(!valid) return res.status(400).json(errors);
+
+    const noImg = 'no-img.png'
     let token, userId;
     db.doc(`/users/${newUser.userName}`)
     .get()
@@ -40,6 +42,7 @@ exports.signup = (req, res) => {
             userName: newUser.userName,
             email: newUser.email,
             createdAt: new Date().toISOString(),
+            imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBusket}/o/${noImg}?alt=media`,
             userId
         };
         return db.doc(`/users/${newUser.userName}`).set(userCredentials);
@@ -101,9 +104,9 @@ exports.uploadImage = (req, res) => {
  let imageToBeUploaded = {};
 
  busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-     console.log(fieldname);
-     console.log(filename);
-     console.log(mimetype);
+     if(mimetype !== 'image/jpeg' && mimetype !== 'image/png') {
+         return res.status(400).json({ error: 'Wrong File type for image'});
+     }
      const imageExtension = filename.split('.')[filename.split('.').length - 1]
      const imageFileName = `${Math.round(Math.random()*1000000000)}.${imageExtension}`;
      const filepath = path.join(os.tmpdir(), imageFileName);
@@ -131,4 +134,5 @@ busboy.on('finish', () => {
         return res.status(500).json({ error: err.code });
     })
 })
+busboy.end(req.rawBody);
 }
