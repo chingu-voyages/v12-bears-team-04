@@ -5,6 +5,8 @@ const config = require('../util/config')
 const firebase = require('firebase');
 firebase.initializeApp(config)
 
+const { validateSignupData, validateLoginData } =require('../util/validators')
+
 exports.signup = (req, res) => {
     const newUser = {
         email: req.body.email,
@@ -12,20 +14,10 @@ exports.signup = (req, res) => {
         confirmPassword: req.body.confirmPassword,
         userName: req.body.userName,
     };
-
-    let errors = {};
-
-    if(isEmpty(newUser.email)) {
-        errors.email = 'Email must not be empty'
-    } else if(!isEmail(newUser.email)){
-        errors.email = 'Enter a valid email address'
-    }
-    if(isEmpty(newUser.password)) errors.password = 'Please enter your Password'
-    if(newUser.password !== newUser.confirmPassword) errors.confirmPassword = 'Password does not match, Please make sure enter exact same password again';
-    if(isEmpty(newUser.userName)) errors.userName = 'Pleasenter your username'
-
-    if(Object.keys(errors).length > 0) return res.status(400).json(errors);
    
+    const { valid, errors } = validateSignupData(newUser);
+
+    if(!valid) return res.status(400).json(errors);
     let token, userId;
     db.doc(`/users/${newUser.userName}`)
     .get()
@@ -71,12 +63,10 @@ exports.login = (req, res) => {
         password: req.body.password
     };
 
-    let errors = {};
-    
-    if(isEmpty(user.email)) errors.email = 'Enter a Valid email';
-    if(isEmpty(user.password)) errors.password = 'Enter a valid password';
+       
+    const { valid, errors } = validateLoginData(user);
 
-    if(Object.keys(errors).length > 0) return res.status(400).json(errors);
+    if(!valid) return res.status(400).json(errors);
 
     firebase
     .auth()
