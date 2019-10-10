@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import betchaLogo from "../assets/images/Logo.svg";
+import { Link } from "react-router-dom";
 
 const Img = styled.img`
   position: absolute;
   width: 73px;
-  height: 60px;
+  height: 50px;
   left: 150px;
-  top: 27px;
+  margin: 0;
   &:hover {
     cursor: pointer;
   }
@@ -15,7 +16,11 @@ const Img = styled.img`
 
 class Logo extends Component {
   render() {
-    return <Img src={betchaLogo} alt="Betcha Logo" />;
+    return (
+      <Link to="/">
+        <Img src={betchaLogo} alt="Betcha Logo" />
+      </Link>
+    );
   }
 }
 
