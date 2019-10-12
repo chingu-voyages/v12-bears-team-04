@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { admin, db } = require('./admin');
 
 module.exports = (req, res, next) => {

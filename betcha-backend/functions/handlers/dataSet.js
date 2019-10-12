@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { db } = require('../util/admin');
 
 exports.getAllDataSet = (req, res) => {
