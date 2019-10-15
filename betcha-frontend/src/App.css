@@ -1,5 +1,19 @@
+:root {
+	--color-dk-grey: #616e7d;
+	--color-lt-green: #79b9a2;
+	--color-dk-green: #5d917e;
+	--color-text-grey: #343c45;
+	--font-main: "Work Sans";
+	--font-alt1: "Titillium Web";
+}
+
 .App {
 	text-align: center;
+	background-color: aqua;
+}
+
+.bears {
+	color: #bada55;
 }
 
 .App-logo {
@@ -19,4 +33,35 @@
 
 .App-link {
 	color: #09d3ac;
+}
+
+.vsBox {
+	border: solid red 2px;
+}
+
+.challengeBox {
+	border: solid red 2px;
+}
+
+.hero {
+	width: 100%;
+	border: solid red 2px;
+	display: block;
+	position: absolute;
+	height: auto;
+}
+
+.hero h1 {
+	display: inline;
+	margin: 0px auto;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	z-index: 99999;
+}
+
+.hero img {
+	object-fit: cover;
+	border: solid red 2px;
+	position: relative;
 }

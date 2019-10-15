@@ -15,8 +15,10 @@ const NavContainer = styled.div`
 	max-height: 2em;
 	padding: 5px;
 	display: flex;
-	width: 100%;
+	min-width: 100%;
+	max-width: 100%;
 	justify-content: space-between;
+	position: relative;
 `;
 
 const MainBody = styled.div`
@@ -30,6 +32,14 @@ const NavInput = styled.div`
 	display: flex;
 	padding: 5px;
 	justify-content: space-between;
+	/* position: relative; */
+	input {
+		max-width: 100%;
+		max-height: 100%;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	};
 	span {
 		justify-self: center;
 	};
@@ -39,6 +49,20 @@ const NavInput = styled.div`
 		strokeLinejoin: "round",
 		strokeMiterlimit: "1.41421"
 	}
+`;
+
+const ExtendedInput = styled.li`
+	border: solid var(--main-dk-grey) 2px;
+	position: absolute;
+	width: 80vw;
+	left: 10vw;
+	top: 10vh;
+	background-color: white;
+	color: #bada55;
+`;
+
+const InputOptions = styled.ul`
+	color: var(--color-text-grey);
 `;
 
 const Search = styled(NavInput)``;
@@ -54,6 +78,8 @@ const AllChallenges = props => {
 	});
 	const [sort, setSort] = useState("title");
 	const [search, setSearch] = useState("");
+	const [showFilter, setShowFilter] = useState(false);
+	const [showSort, setShowSort] = useState(false);
 
 	console.log(challengeList);
 
@@ -74,12 +100,30 @@ const AllChallenges = props => {
 						<span>Search</span>
 					</NavInput>
 
-					<NavInput>
+					<NavInput onClick={() => setShowFilter(!showFilter)}>
 						<FilterIcon />
 						<span>Filter</span>
 						<ExtendIcon />
+						{showFilter && (
+							<ExtendedInput>
+								<InputOptions
+									onClick={() =>
+										setFilterParamList({
+											...filterParamList,
+											active: !filterParamList.active
+										})
+									}
+								>
+									Show only Active Challenges
+								</InputOptions>
+								<InputOptions>Show only Charity Challenges</InputOptions>
+								<InputOptions>
+									Challenges starting in the next 7 days
+								</InputOptions>
+							</ExtendedInput>
+						)}
 					</NavInput>
-					<NavInput>
+					<NavInput onClick>
 						<SortIcon />
 						<span>Sort</span>
 						<ExtendIcon />
