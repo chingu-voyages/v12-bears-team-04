@@ -5,6 +5,7 @@
 	--color-text-grey: #343c45;
 	--font-main: "Work Sans";
 	--font-alt1: "Titillium Web";
+	--breakpoint-mobile: "780px";
 }
 
 .App {
@@ -44,24 +45,32 @@
 }
 
 .hero {
-	width: 100%;
-	border: solid red 2px;
-	display: block;
+	width: 100vw;
+	max-height: 40vh;
+	display: flex;
 	position: absolute;
 	height: auto;
+	justify-content: center;
+	align-items: center;
 }
 
 .hero h1 {
 	display: inline;
-	margin: 0px auto;
 	position: absolute;
-	text-align: center;
 	top: 50%;
 	z-index: 99999;
+	margin: 0;
+	color: white;
+	text-shadow: 0px 0px 13.4px rgb(0, 0, 0, 0.5);
+	text-transform: uppercase;
 }
 
 .hero img {
 	object-fit: cover;
-	border: solid red 2px;
+	width: 100%;
 	position: relative;
+}
+
+.challengePage {
+	background-color: #09d3ac;
 }

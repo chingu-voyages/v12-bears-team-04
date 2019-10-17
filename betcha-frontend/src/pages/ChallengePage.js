@@ -13,9 +13,9 @@ const ChallengePage = props => {
 	const test = testData[0];
 	const [friendChallengeVisible, setFriendChallengeVisible] = useState(false);
 	return (
-		<PageItem>
-			<Navbar />
-			<HeroImage title={test.title} imgSrc={test.challengeImgUrlLg} />
+		<PageItem className="challengePage">
+			<Navbar heading="Challenge Page" />
+			{/* <HeroImage title={test.title} imgSrc={test.challengeImgUrlLg} />
 			<div className="bodyText">
 				<div className="subHeader">{test.subTitle}</div>
 				<div className="rules">
@@ -37,7 +37,7 @@ const ChallengePage = props => {
 						test.startDate
 					]}
 				/>
-			</div>
+			</div> */}
 		</PageItem>
 	);
 };
