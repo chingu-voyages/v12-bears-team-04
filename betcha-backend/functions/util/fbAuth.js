@@ -6,7 +6,8 @@ module.exports = (req, res, next) => {
      if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
          idToken = req.headers.authorization.split('Bearer ')[1];
      } else {
-         console.erroe('No token found.')
+         console.console.error();
+         ('No token found.')
          return res.status(403).json({ error: 'Unauthorized'});
      }
 
@@ -18,8 +19,9 @@ module.exports = (req, res, next) => {
          .limit(1)
          .get();
      })
-     .then(data => {
-         req.user.userName = data.doc[0].data().userName;
+     .then((data) => {
+         req.user.userName = data.docs[0].data().userName;
+         req.user.imageUrl = data.docs[0].data().imageUrl;
          return next();
      })
      .catch(err => {

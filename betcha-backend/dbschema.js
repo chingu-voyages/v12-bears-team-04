@@ -1,6 +1,7 @@
 let db = {
     users: [
         {
+            userId: 'e31Ws6qs4baaPpPlQGjDbMEvuZ63',
             userName: 'user',
             firstName: 'firstname',
             lastName: 'lastname',
@@ -17,9 +18,6 @@ let db = {
     dataSet: [
         {
             userName: 'user',
-            firstName: 'firstname',
-            lastName: 'lastname',
-            email: 'email',
             createdAt: '2019-10-06T00:07:23.629Z',
             imageUrl: 'no-img.png',
             bio: 'I want to challenge myself',
@@ -27,13 +25,21 @@ let db = {
             likeCount: 5, //upvote
             commentCount: 3 
         }
+    ],
+    comments: [
+        {
+    userName: "kieffwong",
+    createdAt:"2019-10-06T00:07:23.629Z",
+    dataSetId:"zoDgjXjHKhHfmsfy7G6F",
+    comment: 'well done!'
+}
     ]
 };
 
 const userDetails = {
     //redux data
     credentials: {
-                userId: '',
+                userId: 'YAkHZC3G9vMaehcqZNiLqVlMiE52',
                 userName: 'user',
                 email: 'user@hotmail.com',
                 createdAt: '2019-10-06T00:07:23.629Z',
@@ -45,11 +51,11 @@ const userDetails = {
     likes: [
             {
                 userName: 'user',
-                dataSetId: ''
+                userId: 'YAkHZC3G9vMaehcqZNiLqVlMiE52'
             },
             {
                 userName: 'user',
-                dataSetId: ''
+                userId: 'YAkHZC3G9vMaehcqZNiLqVlMiE52'
             },
         ]
 }

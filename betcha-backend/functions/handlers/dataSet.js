@@ -54,4 +54,59 @@ exports.postOneDataSet =  (req, res) => {
         console.error(err);
     });
    }
-   
+   //Fetch one dataset
+   exports.getDataSet = (req, res) => {
+       let postData = {};
+       db.doc(`/dataSet/${req.params.dataSetId}`).get()
+       .then((doc) => {
+           if(!doc.exists){
+               return res.status(404).json({ error: 'Data not found'})
+           }
+           postData = doc.data();
+           postData.dataSetId = doc.id;
+           return db
+           .collection('comments')
+           .orderBy('createdAt', 'desc')
+           .where('dataSetId', '==', req.params.dataSetId).get();
+       })
+       .then((data) => {
+           postData.comments = [];
+           data.forEach((doc) => {
+               postData.comments.push(doc.data())
+           });
+           return res.json(postData);
+       })
+       .catch((err) => {
+           console.error(err);
+           res.status(500).json({ error: err.code })
+       })
+   };
+
+   //Comment on a comment
+   exports.commentOnDataSet = (req,res) => {
+       if(req.body.comment.trim() === '') return res.status(404).json({ error: 'Please comment'});
+
+       const newComment = {
+           comment: req.body.comment,
+           createdAt: new Date().toISOString(),
+           dataSetId: req.params.dataSetId,
+           userName: req.user.userName,
+           userImage: req.user.imageUrl
+       };
+
+       db.doc(`/dataSet/${req.params.dataSetId}`).get()
+       .then((doc) => {
+           if(!doc.exists){
+               return res.status(404).json({error: 'Post not found'})
+           }
+           return db.collection('comments').add(newComment);
+        })
+        // eslint-disable-next-line promise/always-return
+        .then(() => {
+        res.json(newComment);
+       })
+       .catch((err) => {
+           console.log(err);
+           res.status(500).json({ error: 'Something went wrong!'})
+       })
+   }
