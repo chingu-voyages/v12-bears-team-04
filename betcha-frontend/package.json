@@ -6,13 +6,14 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.5",
+    "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
     "react-wizard-form": "^1.2.11",
     "styled-components": "^4.4.0",
-    "webpack": "^2.4.1"
+    "webpack": "^4.41.2"
   },
   "scripts": {
     "start": "react-scripts start",
