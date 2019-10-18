@@ -49,9 +49,10 @@ class SignUpFormStepTwo extends Component {
       }
     };
   }
-  handleNextButtonClick = e => {
+  handleNextButtonClick = () => {
+    console.log("Logged");
     let step = this.props.step;
-    this.props.handleChildState("location", this.state, step++);
+    this.props.handleChildState("location", this.state.location, step++);
   };
   handlePrevButtonClick = () => {
     let step = this.props.step;
@@ -79,21 +80,21 @@ class SignUpFormStepTwo extends Component {
         <Form>
           <Input
             type="text"
-            value={this.state.city}
+            value={this.state.location.city}
             name="city"
             placeholder="city..."
             onChange={this.handleChange.bind(this)}
           />
           <Input
             type="text"
-            value={this.state.country}
+            value={this.state.location.country}
             name="country"
             placeholder="country..."
             onChange={this.handleChange.bind(this)}
           />
         </Form>
-        <PrevButton onClick={this.handlePrevButtonClick} />
-        <NextButton onClick={this.handleNextButtonClick} />
+        <PrevButton handlePrevButtonClick={this.handlePrevButtonClick} />
+        <NextButton handleNextButtonClick={this.handleNextButtonClick} />
       </div>
     );
   }

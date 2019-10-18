@@ -72,14 +72,14 @@ class SignUpFormStepOne extends Component {
         <Form>
           <Input
             type="text"
-            value={this.state.firstName}
+            value={this.state.nameData.firstName}
             name="firstName"
             placeholder="first name"
             onChange={this.handleChange.bind(this)}
           />
           <Input
             type="text"
-            value={this.state.lastName}
+            value={this.state.nameData.lastName}
             name="lastName"
             placeholder="last name"
             onChange={this.handleChange.bind(this)}

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import SignUpFormStepOne from "./SignUpFormStepOne";
 import SignUpFormStepTwo from "./SignUpFormStepTwo";
+import SignUpFormStepThree from "./SignUpFormStepThree";
+import SignUpFormStepFour from "./SignUpFormStepFour";
 
 const FormContainer = styled.div`
   position: absolute;
@@ -33,13 +35,14 @@ class SignUpForm extends Component {
       },
       credentials: {
         userName: "",
-        password: ""
+        password: "" //hashed value to be inputed here?
       }
     };
     this.handleChildState = this.handleChildState.bind(this);
   }
 
   handleChildState = (description, data, step) => {
+    console.log("handleChildState fired!!!");
     if (description) {
       switch (description) {
         default:
@@ -51,6 +54,31 @@ class SignUpForm extends Component {
               lastName: data.lastName
             },
             step: 1
+          });
+        case "location":
+          console.log("Enter Location into State");
+          return this.setState({
+            location: {
+              city: data.city,
+              country: data.country
+            },
+            step: 2
+          });
+        case "contact":
+          return this.setState({
+            contact: {
+              mobile: data.mobile,
+              email: data.email
+            },
+            step: 3
+          });
+        case "credentials":
+          return this.setState({
+            credentials: {
+              userName: data.userName,
+              password: data.password
+            },
+            step: 4
           });
       }
     } else {
@@ -81,12 +109,23 @@ class SignUpForm extends Component {
         );
       case 2:
         console.log(this.state);
-        <SignUpFormStepThree
-          handleChildState={this.handleChildState}
-          firstName={this.state.userNames.firstName}
-          step={this.state.step}
-          visible={true}
-        />;
+        return (
+          <SignUpFormStepThree
+            handleChildState={this.handleChildState}
+            firstName={this.state.userNames.firstName}
+            step={this.state.step}
+            visible={true}
+          />
+        );
+      case 3:
+        console.log(this.state);
+        return (
+          <SignUpFormStepFour
+            handleChildState={this.handleChildState}
+            step={this.state.step}
+            visible={true}
+          />
+        );
       default:
         return;
     }

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import NextButton from "../../../widgets/formButtons/signUpForm/NextButton";
+import PrevButton from "../../../widgets/formButtons/signUpForm/PrevButton";
 const div = styled.div`
   width: 500px;
 `;
@@ -39,31 +41,56 @@ class SignUpFormStepThree extends Component {
     super(props);
 
     this.state = {
-      visible: this.props.visible
+      visible: this.props.visible,
+      contact: {
+        mobile: "",
+        email: ""
+      }
     };
   }
   handleNextButtonClick = () => {
     let step = this.props.step;
-    let location = {};
-    location.city = this.refs.city;
-    location.country = this.refs.country;
-    this.props.handleChildState("location", location, step++);
+    this.props.handleChildState("contact", this.state.contact, step++);
   };
   handlePrevButtonClick = () => {
     let step = this.props.step;
     this.props.handleChildState("", {}, step--);
   };
+  handleChange = e => {
+    let target = e.target;
+    if (target.name === "mobile") {
+      this.setState({
+        contact: { ...this.state.contact, mobile: target.value }
+      });
+    } else {
+      this.setState({
+        contact: { ...this.state.contact, email: target.value }
+      });
+    }
+  };
 
   render() {
     return (
       <div>
-        <H2>{this.props.firstName}, where are you from?</H2>
+        <H2>How can we reach you?</H2>
         <Form>
-          <Input ref="city" placeholder="city..." />
-          <Input ref="country" placeholder="country..." />
+          <Input
+            type="text"
+            value={this.state.contact.mobile}
+            name="mobile"
+            placeholder="mobile..."
+            onChange={this.handleChange.bind(this)}
+          />
+          <Input
+            type="text"
+            value={this.state.contact.email}
+            name="email"
+            placeholder="email..."
+            onChange={this.handleChange.bind(this)}
+          />
         </Form>
-        <PrevButton onClick={this.handlePrevButtonClick} />
-        <NextButton onClick={this.handleNextButtonClick} />
+        <PrevButton handlePrevButtonClick={this.handlePrevButtonClick} />
+        <NextButton handleNextButtonClick={this.handleNextButtonClick} />
       </div>
     );
   }
