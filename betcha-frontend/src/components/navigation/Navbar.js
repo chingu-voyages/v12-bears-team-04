@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const Nav = styled.nav`
 	width: 100%;
 	height: 50px;
+  position: relative;
+  z-index: 9;
 	box-sizing: border-box;
   padding: 0px 150px;
   h1, img[alt*="Hamburger"] {
